@@ -2,17 +2,12 @@
 using namespace std;
 
 int factorial(int n) {
-	if (n > 2) {
-		n *= factorial(n - 1);
-	}
-	return n;
+	if (n <= 1)
+		return 1;
+	return n * factorial(n - 1);
 }
 int main() {
 	int num;
 	cin >> num;
-	int total = 1;
-	if (num != 0) {
-		total = factorial(num);
-	}
-	cout << total;
+	cout << factorial(num);
 }
