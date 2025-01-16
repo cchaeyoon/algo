@@ -9,10 +9,6 @@ int main() {
 	cin >> n >> m;
 	vector<int> arr(n);
 
-	for (int a = 0; a < n; a++) {
-		arr[a] = 0;
-	}
-
 	int i, j, k;
 	for (int a = 0; a < m; a++) {
 		cin >> i >> j >> k;
