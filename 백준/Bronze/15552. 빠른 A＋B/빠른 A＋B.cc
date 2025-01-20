@@ -1,20 +1,16 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
 int main() {
-	int m;
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
+	ios::sync_with_stdio(0);
+	cin.tie(0);
 
-	cin >> m;
-	vector<int>a(m), b(m);
+	int n;
+	cin >> n;
 
-	for (int i = 0;i < m;i++) {
-		cin >> a[i] >> b[i];
-	}
-	for (int i = 0;i < m;i++) {
-		cout << a[i] + b[i];
-		cout << "\n";
+	int a, b;
+	for (int i = 0;i < n;i++) {
+		cin >> a >> b;
+		cout << a + b<<'\n';
 	}
 }
