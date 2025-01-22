@@ -9,11 +9,12 @@ int main() {
 
 	int n;
 	cin >> n;
-	vector<int>arr(n);
+
+	int arr[1000];
 	for (int i = 0; i < n; i++) {
 		cin >> arr[i];
 	}
-	sort(arr.begin(), arr.end());
+	sort(arr, arr+n);
 	for (int i = 0; i < n; i++) {
 		cout << arr[i] << '\n';
 	}
