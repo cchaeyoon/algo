@@ -5,24 +5,22 @@ int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	int n;
+	int n, count = 0;
 	cin >> n;
 
-	int count = 0;
-	int arr[2] = { 5, 2 };
-
-	if (n != 1 && n!=3 ) {
-		for (int i = 0; i < 2; i++) {
-			count += n / arr[i];
-			n %= arr[i];
-			if (n == 3 || n == 1) {
-				count -= 1;
-				n += arr[i];
+	if (n % 5 == 0)
+		cout << n / 5;
+	else {
+		while (n > 0) {
+			n -= 2;
+			count++;
+			if (n % 5 == 0) {
+				cout << count + (n / 5);
+				break;
 			}
 		}
-		cout << count;
 	}
-	else if (n == 1 || n==3) {
+	if (n < 0) {
 		cout << -1;
 	}
 }
