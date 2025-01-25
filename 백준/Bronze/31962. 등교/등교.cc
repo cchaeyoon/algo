@@ -5,20 +5,14 @@ int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	
-	int n, x;
+	int n, x, s, t;
 	cin >> n >> x;
-	int s[100];
-	int t[100];
+	int small = -1;
 
 	for (int i = 0; i < n; i++) {
-		cin >> s[i] >> t[i];
-	}
-	int small=-1;
-	for (int i = 0; i < n; i++) {
-		if (s[i] + t[i] <= x) {
-			small = s[i];
-			if (s[i] > small)
-				small = s[i];
+		cin >> s >> t;
+		if (s + t <= x && small < s) {
+			small = s;
 		}
 	}
 	cout << small;
