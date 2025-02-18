@@ -1,55 +1,57 @@
 #include <iostream>
+#include <vector>
 #include <queue>
+#include <algorithm>
 using namespace std;
 
-int n, m, v;
-int map[1001][1001];
-int visited1[1001];
-int visited2[1001];
-queue<int>q;
+bool visited1[1001];
+bool visited2[1001];
+vector<int>edges[1001];
 
-void DFS(int v) {
-	cout << v << " ";
-	for (int j = 1; j <= n; j++) {
-		if (map[v][j] && visited1[j] == 0) {
-			visited1[j] = 1;
-			DFS(j);
-		}
+void dfs(int cur) {
+	visited1[cur] = 1;
+	cout << cur << ' ';
+	for (int& nxt : edges[cur]) {
+		if (visited1[nxt]) continue;
+		dfs(nxt);
 	}
 }
 
-void BFS(int v) {
+void bfs(int start) {
+	queue < int>q;
+	visited2[start] = 1;
+	q.push(start);
 	while (!q.empty()) {
-		int v = q.front();
-		cout << v << " ";
+		int cur = q.front();
+		cout << cur << ' ';
 		q.pop();
-		for (int j = 1; j <= n; j++) {
-			if (map[v][j] && visited2[j] == 0) {
-				visited2[j] = 1;
-				q.push(j);
-			}
+		for (int& nxt : edges[cur]) {
+			if (visited2[nxt]) continue;
+			visited2[nxt] = 1;
+			q.push(nxt);
 		}
 	}
 }
+
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	cout.tie(0);
 
+	int n, m, v;
 	cin >> n >> m >> v;
-	
+
 	for (int i = 0; i < m; i++) {
-		int a, b;
-		cin >> a >> b;
-		map[a][b] = 1;
-		map[b][a] = 1;
+		int tmp1, tmp2;
+		cin >> tmp1 >> tmp2;
+		edges[tmp1].push_back(tmp2);
+		edges[tmp2].push_back(tmp1);
 	}
-	visited1[v] = 1;
-	DFS(v);
-
+	for (int i = 1; i <= n; i++) {
+		sort(edges[i].begin(), edges[i].end());
+	}
+	dfs(v);
 	cout << '\n';
-
-	visited2[v] = 1;
-	q.push(v);
-	BFS(v);
+	bfs(v);
+	return 0;
 }
